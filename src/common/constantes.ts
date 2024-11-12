@@ -1,6 +1,6 @@
 export const CONSTANTES = {
   // API URLs
-  API_URL: "https://sismoc-production-8jaa.vercel.app/",
+  API_URL: "https://sismoc-production-8jaa.vercel.app/sismoc/api",
   API_IBGE:
     "https://servicodados.ibge.gov.br/api/v1/localidades/estados/<UF>/municipios",
   API_CNAE_GRUPOS: "https://servicodados.ibge.gov.br/api/v2/cnae/grupos",
