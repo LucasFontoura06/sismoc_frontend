@@ -1,0 +1,74 @@
+/* login.module.css */
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1e283b; /* Cor de fundo da tela */
+  }
+  
+  .loginForm {
+    width: 100%;
+    max-width: 400px; /* Define a largura máxima do formulário */
+    padding: 2rem;
+    background-color: white; /* Cor de fundo do formulário */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .loginHeader {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333; /* Cor escura para o cabeçalho */
+  }
+  
+  .loginButton {
+    width: 100%;
+    padding: 0.50rem;
+    background-color: #1b2638 !important; /* Azul escuro */
+    color: white !important;
+    font-weight: bold;
+    border: 2px solid #1b2638; /* Borda do botão */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .loginButton:hover {
+    background-color: #1e8cfa !important; /* Cor de fundo ao hover */
+    border-color: #1e8cfa; /* Altera a borda no hover */
+  }
+  
+  .noShadowCard {
+    background-color: #ffffff !important; /* Fundo claro do card */
+    color: #000 !important; /* Texto preto */
+    box-shadow: none; /* Remove sombra do card */
+  }
+  
+  .inputField {
+    background-color: #fff !important; /* Fundo branco dos campos */
+    color: #000 !important; /* Cor do texto preto */
+  }
+  
+  /* Corrige bordas roxas */
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #ccc !important; /* Define a borda como cinza clara ao focar */
+  }
+  
+  /* Define a cor do texto e do placeholder */
+  .MuiInputBase-input {
+    color: #000 !important; /* Força o texto a ser preto */
+  }
+  
+  .MuiInputBase-root {
+    background-color: #fff !important; /* Fundo branco dos campos */
+    border: 1px solid #ccc !important; /* Borda cinza clara */
+  }
+  
+  .MuiInputBase-input::placeholder {
+    color: #666 !important; /* Placeholder com cinza claro */
+  }
+  

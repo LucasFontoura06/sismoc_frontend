@@ -1,0 +1,165 @@
+/* Adiciona uma barra lateral */
+.sidebar {
+    width: 250px; /* Largura da barra lateral */
+    background-color: #1b2638; /* Cor de fundo */
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #ffffff; 
+    box-sizing: border-box;
+    height: calc(100vh - 4rem); /* Ajusta a altura para cobrir a tela, menos a margem superior e inferior */
+    position: sticky;
+    top: 2rem; /* Mantém a barra lateral fixa ao rolar a página */
+}
+
+.geral {
+    display: flex;
+    gap: 1rem;
+}
+
+.gridContainer {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem;
+    justify-content: center; /* Centraliza os gráficos no container */
+}
+
+.graficoTitulo {
+    font-size: 2rem;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.graficoGrandeItem h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.graficoTotal h2 {
+    font-size: 1.25rem; /* Reduzido de 1.5rem para 1.25rem */
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 0.5rem; /* Reduzido de 1rem para 0.5rem */
+    transition: transform 0.3s ease;
+}
+
+.graficoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem;
+    justify-content: center; /* Centraliza os gráficos no container */
+}
+
+.graficoTotal {
+    flex: 1 1 200px; /* Tamanho base e permite crescimento */
+    padding: 0.5rem; /* Reduz o padding para achatar a caixa */
+    background-color: #1b2638;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+    transition: transform 0.3s ease-in-out;
+    height: 110px; /* Deixa o gráfico mais achatado */
+    border: 2px solid #ffffff; 
+}
+
+.graficoGrandeContainer {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap; /* Permite quebra de linha */
+    margin: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.graficoGrandeItem {
+    flex: 1 1 calc(50% - 1rem); /* Ajusta a largura dos itens */
+    background-color: #1b2638;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+    border: 2px solid #ffffff;
+    height: 329px;
+}
+
+.graficoGrandeItemMap {
+    flex: 1 1 calc(50% - 1rem); /* Ajusta a largura dos itens */
+    background-color: #1b2638;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+    border: 2px solid #ffffff;
+    height: 500px;
+}
+
+.graficoGrandeItem:hover,
+.graficoTotal:hover,
+.graficoGrandeItemMap:hover {
+    transform: translateY(-2px) scale(1.01); /* Efeito de movimentação mais suave */
+    transition: transform 0.3s ease; /* Duração e suavidade da transição */
+}
+
+.mapContainer {
+    margin-top: 0rem; /* Espaço entre os gráficos e o mapa */
+    flex: 1;
+    min-height: 390px;
+    width: 100%;
+    border-radius: 15px;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 600px) {
+    .geral {
+        flex-direction: column; /* Empilha barra lateral e conteúdo */
+    }
+    
+    .sidebar {
+        width: 100%; /* A barra lateral ocupa toda a largura em telas pequenas */
+        height: auto; /* Ajusta a altura da barra lateral em telas pequenas */
+    }
+    
+    .graficoContainer {
+        flex-direction: column;
+        margin: 0.5rem;
+    }
+
+    .graficoTotal, .graficoGrandeItem {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .graficoTitulo, .graficoGrandeItem h1, .graficoTotal h2 {
+        font-size: 1.25rem; /* Ajuste para tamanhos menores em telas pequenas */
+    }
+
+    .graficoGrandeContainer {
+        flex-direction: column; /* Empilha os gráficos de linha em telas menores */
+    }
+
+    .graficoGrandeItem {
+        padding: 0.5rem; /* Reduz o padding em telas menores */
+    }
+
+    .mapContainer {
+        margin-top: 0.5rem; /* Reduz o espaço entre gráficos e mapa em telas menores */
+    }
+}
