@@ -10,7 +10,6 @@ import Loading from "@/components/template/loading";
 import Titulo from "@/components/template/titulo";
 import PaginaLogin from "@/app/login/paginaLogin";
 import { CONSTANTES } from "@/common/constantes";
-import theme, { lightTheme } from "./styleTheme";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@/components/template/menu";
 import StoreProvider from "./storeProvider";

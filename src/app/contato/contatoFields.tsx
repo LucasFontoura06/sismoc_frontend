@@ -53,6 +53,7 @@ const ContatoFields = (props: any) => {
       <Grid xs={12} md={12}>
         <InputForm
           label={`* ${CONSTANTES.LBL_CARGO}`}
+          name="cargo"
           value={valuesContato.cargo}
           onChange={(event: any) => dispatch(setCargo(event.target.value))}
           isInvalid={touched.cargo && Boolean(errors.cargo)}
@@ -63,6 +64,7 @@ const ContatoFields = (props: any) => {
       <Grid xs={12} md={4}>
         <InputForm
           label={`* ${CONSTANTES.LBL_EMAIL}`}
+          name="email"
           value={valuesContato.email}
           onChange={(event: any) => dispatch(setEmail(event.target.value))}
           isInvalid={touched.email && Boolean(errors.email)}
@@ -72,6 +74,7 @@ const ContatoFields = (props: any) => {
       <Grid xs={12} md={4}>
         <InputForm
           label={`* ${CONSTANTES.LBL_CEL}`}
+          name="celular"
           value={valuesContato.celular}
           mask={CONSTANTES.MASK_CEL}
           onChange={(event: any) => dispatch(setCelular(event.target.value))}
@@ -82,6 +85,7 @@ const ContatoFields = (props: any) => {
       <Grid xs={12} md={4}>
         <InputForm
           label={CONSTANTES.LBL_TEL}
+          name="telefone"
           value={valuesContato.telefone}
           mask={maskPhone}
           onChange={(event: any) => dispatch(setTelefone(event.target.value))}

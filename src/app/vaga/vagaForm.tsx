@@ -34,11 +34,13 @@ const VagaForm = (props: any) => {
     if (validForm) {
       dispatch(addVaga(values));
     }
-  }, [validForm, dispatch]);
+  }, [validForm, dispatch, values]);
 
   useEffect(() => {
     // Limpa o formulário ao montar o componente
-    dispatch(clearForm());
+    return () => {
+      dispatch(clearForm());
+    };
   }, [dispatch]);
 
   useEffect(() => {

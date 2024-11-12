@@ -82,6 +82,8 @@ const buscarPerfilUsuario = async (uid: string) => {
 
 export default function Menu(props: MenuProps) {
   const router = useRouter();
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
 
   const [user, setUser] = useState<{
     name: string;
@@ -94,25 +96,10 @@ export default function Menu(props: MenuProps) {
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
-  const [lastActivity, setLastActivity] = useState(Date.now()); // Registra a última atividade
-  const LOGOUT_TIMEOUT = 30 * 60 * 1000; // 1 minuto em milissegundos
-  const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+  const [lastActivity, setLastActivity] = useState(Date.now());
+  const LOGOUT_TIMEOUT = 30 * 60 * 1000;
 
-  // Função para resetar o timer de inatividade
-  const resetActivityTimer = useCallback(() => {
-    setLastActivity(Date.now());
-  }, []);
-
-  // Função para verificar inatividade e fazer logout
-  const checkInactivity = useCallback(() => {
-    const currentTime = Date.now();
-    if (currentTime - lastActivity > LOGOUT_TIMEOUT) {
-      handleLogout();
-    }
-  }, [lastActivity]);
-
-  // Função de logout
+  // Função de logout (movida para antes do checkInactivity)
   const handleLogout = useCallback(() => {
     const auth = getAuth();
     signOut(auth)
@@ -128,25 +115,36 @@ export default function Menu(props: MenuProps) {
       });
   }, [router]);
 
+  // Função para resetar o timer de inatividade
+  const resetActivityTimer = useCallback(() => {
+    setLastActivity(Date.now());
+  }, []);
+
+  // Função para verificar inatividade e fazer logout
+  const checkInactivity = useCallback(() => {
+    const currentTime = Date.now();
+    if (currentTime - lastActivity > LOGOUT_TIMEOUT) {
+      handleLogout();
+    }
+  }, [lastActivity, LOGOUT_TIMEOUT, handleLogout]);
+
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        if (!user) {  // Só mostra a mensagem se o usuário ainda não estiver definido
+        if (!user) {
           try {
             const userProfile = await buscarPerfilUsuario(firebaseUser.uid);
             if (userProfile) {
               setUser({
                 name: firebaseUser.displayName || "Usuário",
                 email: firebaseUser.email || "",
-                perfil: userProfile, // Agora recebe o objeto perfil completo
+                perfil: userProfile,
               });
-              setShowSuccessMessage(true); // Mostra a mensagem de sucesso
+              setShowSuccessMessage(true);
               setTimeout(() => {
-                setShowSuccessMessage(false); // Oculta após 3 segundos
+                setShowSuccessMessage(false);
               }, 3000);
-            } else {
-              console.error("Usuário não encontrado no Firestore com UID:", firebaseUser.uid);
             }
           } catch (error) {
             console.error("Erro ao buscar os dados do Firestore:", error);
@@ -155,19 +153,10 @@ export default function Menu(props: MenuProps) {
       }
     });
 
-    // Monitora eventos de atividade do usuário
-    // window.addEventListener("mousemove", resetActivityTimer);
-    // window.addEventListener("keydown", resetActivityTimer);
-
-    // const inactivityCheckInterval = setInterval(checkInactivity, 1000); // Verifica a cada 1 segundo
-
     return () => {
-      // window.removeEventListener("mousemove", resetActivityTimer);
-      // window.removeEventListener("keydown", resetActivityTimer);
-      // clearInterval(inactivityCheckInterval);
       unsubscribe();
     };
-  }, [checkInactivity, resetActivityTimer, router, user]);
+  }, [user]);
 
   const handleNavigation = (path: string) => {
     router.push(path);

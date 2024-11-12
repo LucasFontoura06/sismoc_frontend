@@ -231,6 +231,7 @@ const UsuarioList = (props: any) => {
         if (isInEditMode) {
           return [
             <GridActionsCellItem
+              key="save"
               icon={<SaveIcon />}
               label="Save"
               onClick={handleSaveClick(id)}
@@ -239,26 +240,27 @@ const UsuarioList = (props: any) => {
               }}
             />,
             <GridActionsCellItem
+              key="cancel"
               icon={<CancelIcon />}
               label="Cancel"
               onClick={handleCancelClick(id)}
               sx={{
                 color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000',
               }}
-            />,
+            />
           ];
         }
 
         return [
           <GridActionsCellItem
+            key="edit"
             icon={<EditIcon />}
             label="Edit"
             onClick={handleEditClick(id)}
             sx={{
               color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000',
             }}
-          />,
-          // ... outros botões de ação existentes ...
+          />
         ];
       },
     },

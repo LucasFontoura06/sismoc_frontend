@@ -19,6 +19,7 @@ declare module '@mui/material/styles' {
       headerBg: string;
       text: string;
       subText: string;
+      iconColor: string;
     };
   }
 
@@ -29,6 +30,7 @@ declare module '@mui/material/styles' {
       headerBg: string;
       text: string;
       subText: string;
+      iconColor: string;
     };
   }
 } 

@@ -1,28 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-declare module '@mui/material/styles' {
-  interface Palette {
-    menu: {
-      background: string;
-      hover: string;
-      headerBg: string;
-      text: string;
-      subText: string;
-      iconColor: string;
-    }
-  }
-  interface PaletteOptions {
-    menu?: {
-      background: string;
-      hover: string;
-      headerBg: string;
-      text: string;
-      subText: string;
-      iconColor: string;
-    }
-  }
-}
-
 export const lightTheme = createTheme({
   palette: {
     mode: 'light',
@@ -43,8 +20,7 @@ export const lightTheme = createTheme({
       text: '#2c2c2c',
       subText: '#666666',
       iconColor: '#1976d2',
-    },
-    // ... outras configurações
+    }
   },
 });
 
@@ -68,9 +44,6 @@ export const darkTheme = createTheme({
       text: '#ffffff',
       subText: '#b0b0b0',
       iconColor: '#7a0099',
-    },
-    // ... outras configurações
+    }
   },
 });
-
-export default darkTheme;

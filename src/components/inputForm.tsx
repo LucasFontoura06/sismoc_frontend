@@ -1,26 +1,61 @@
-import { TextField, useTheme } from "@mui/material";
-import InputFormMask from "./inputFormMask";
+import { TextField, useTheme, InputBaseComponentProps } from "@mui/material";
+import TextMaskCustom from "./inputFormMask";
 
-const InputForm = (props: any) => {
+interface InputFormProps {
+  label: string;
+  mask?: string;
+  value: string;
+  name?: string;
+  type?: string;
+  onChange: (event: any) => void;
+  tamanhoMax?: number;
+  isInvalid?: boolean;
+  disabled?: boolean;
+  msgError?: string | boolean;
+  sx?: any;
+  fullWidth?: boolean;
+  id?: string;
+  InputProps?: {
+    endAdornment?: React.ReactNode;
+    inputComponent?: React.ElementType<InputBaseComponentProps>;
+    inputProps?: {
+      mask?: string;
+      maxLength?: number;
+      [key: string]: any;
+    };
+    [key: string]: any;
+  };
+}
+
+const InputForm = ({
+  label,
+  mask,
+  value,
+  name,
+  type = "text",
+  onChange,
+  tamanhoMax,
+  isInvalid,
+  disabled = false,
+  msgError,
+  sx,
+  fullWidth = true,
+  id,
+  InputProps,
+}: InputFormProps) => {
   const theme = useTheme();
-  const {
-    label,
-    mask,
-    value,
-    name,
-    type,
-    onChange,
-    tamanhoMax,
-    isInvalid,
-    disabled = false,
-    msgError,
-  } = props;
+
+  const defaultInputProps = mask ? {
+    inputComponent: TextMaskCustom as any,
+    inputProps: { mask, maxLength: tamanhoMax ?? 240 },
+  } : undefined;
 
   return (
     <TextField
+      id={id}
       label={label}
-      fullWidth
-      type={type ?? "text"}
+      fullWidth={fullWidth}
+      type={type}
       sx={{
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
@@ -45,7 +80,7 @@ const InputForm = (props: any) => {
         "& .MuiFormHelperText-root": {
           color: theme.palette.error.main,
         },
-        ...(props.sx || {}), // Permite sobrescrever estilos via prop
+        ...sx
       }}
       value={value}
       name={name}
@@ -53,10 +88,7 @@ const InputForm = (props: any) => {
       error={isInvalid}
       helperText={msgError}
       disabled={disabled}
-      InputProps={{
-        inputComponent: InputFormMask,
-        inputProps: { mask: mask, maxLength: tamanhoMax ?? 240 },
-      }}
+      InputProps={{ ...defaultInputProps, ...InputProps }}
     />
   );
 };

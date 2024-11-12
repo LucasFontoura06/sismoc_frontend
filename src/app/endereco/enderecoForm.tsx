@@ -40,7 +40,7 @@ const EnderecoForm = (props: any) => {
     if (validForm) {
       dispatch(addEndereco(valuesEndereco));
     }
-  }, [validForm, dispatch]);
+  }, [validForm, dispatch, valuesEndereco]);
 
   useEffect(() => {
     if (resetFormEndereco) {

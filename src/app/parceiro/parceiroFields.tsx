@@ -126,11 +126,11 @@ const ParceiroFields = (props: any) => {
       dispatch(clearForm());
       dispatch(setAbaAtiva(CONSTANTES.TAB_ONE_PARC));
     }
-  }, [successIJ, successContato, successParceiro, dispatch]);
+  }, [successIJ, successContato, successParceiro, dispatch, valuesContato.nome, valuesIJ.numero]);
 
   useEffect(() => {
     dispatch(setListaEndereco(enderecos));
-  }, [enderecos]);
+  }, [enderecos, dispatch]);
 
   const isValidParceiroSubmission = useMemo(() => {
     const hasIJNumero = Boolean(valuesIJ.numero);
@@ -193,7 +193,7 @@ const ParceiroFields = (props: any) => {
       ij["arquivo"] = fileDownloadURL;
       dispatch(addInstrumentoJuridico(ij));
     }
-  }, [fileDownloadURL, successUploadFileIJ, dispatch]);
+  }, [fileDownloadURL, successUploadFileIJ, dispatch, getValuesIJToSave]);
 
   useEffect(() => {
     if (isValidParceiroSubmission) {
@@ -223,7 +223,14 @@ const ParceiroFields = (props: any) => {
       };
       dispatch(addParceiro(parceiro));
     }
-  }, [isValidParceiroSubmission, dispatch]);
+  }, [
+    isValidParceiroSubmission,
+    dispatch,
+    valuesParceiro,
+    segmentos,
+    tiposParceiro,
+    areasAtuacao
+  ]);
 
   useEffect(() => {
     if (successParceiro) {

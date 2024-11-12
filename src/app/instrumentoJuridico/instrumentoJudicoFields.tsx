@@ -1,6 +1,6 @@
 import { CONSTANTES } from "@/common/constantes";
 import { FileContext } from "@/common/fileContext";
-import { convertUFDropdown, convertFileToBase64 } from "@/common/utils";
+import { convertUFDropdown } from "@/common/utils";
 import DataInput from "@/components/data";
 import FileInputForm from "@/components/fileInput";
 import InputForm from "@/components/inputForm";
@@ -105,11 +105,10 @@ const InstrumentoJuridicoFields = (props: any) => {
     [dispatch]
   );
 
-  const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      dispatch(setDocumento(file.name));
-      setFile(file);
+  const handleFileChange = useCallback((newFile: File | null) => {
+    if (newFile) {
+      dispatch(setDocumento(newFile.name));
+      setFile(newFile);
     }
   }, [dispatch, setFile]);
 
@@ -119,7 +118,7 @@ const InstrumentoJuridicoFields = (props: any) => {
         <FileInputForm
           label={CONSTANTES.LBL_SELECT_FILE}
           name={CONSTANTES.FILE_NAME}
-          onChange={handleFileChange}
+          onChange={(file: File | null) => handleFileChange(file)}
           value={valuesIJ.documento}
         />
       </Grid>

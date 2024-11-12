@@ -11,7 +11,10 @@ import 'leaflet.heat';
 import React, { useEffect } from 'react';
 import { LatLngTuple } from 'leaflet';
 
-const heatmapData: [LatLngTuple, number][] = [
+// Definindo o tipo correto para os dados do heatmap
+type HeatmapDataType = [LatLngTuple, number][];
+
+const heatmapData: HeatmapDataType = [
   [[-15.7801, -47.9292], 1000000], // Brasília
   [[-22.9068, -43.1729], 6000000], // Rio de Janeiro
   [[-23.5505, -46.6333], 12000000], // São Paulo
@@ -27,7 +30,14 @@ const Mapa: React.FC = () => {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    const heatLayer = L.heatLayer(heatmapData.map(([latlng, value]) => [...latlng, value]), {
+    // Corrigindo a formatação dos dados para o heatLayer
+    const formattedData = heatmapData.map(([latlng, intensity]) => [
+      latlng[0],
+      latlng[1],
+      intensity
+    ]);
+
+    const heatLayer = L.heatLayer(formattedData as any, {
       radius: 45,
       blur: 70,
       gradient: {

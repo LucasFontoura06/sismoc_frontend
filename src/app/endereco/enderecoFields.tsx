@@ -43,7 +43,7 @@ const EnderecoFields = (props: any) => {
     if (abaAtiva == CONSTANTES.TAB_TWO_PARC) {
       dispatch(fetchEndereco());
     }
-  }, [abaAtiva]);
+  }, [abaAtiva, dispatch]);
 
   useEffect(() => {
     if (valuesEndereco.uf) {
